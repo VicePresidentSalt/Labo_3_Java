@@ -17,12 +17,40 @@ public class Jedit
 	   					new BufferedWriter(
 	   						new FileWriter(nomFicher)));
 	   					
+	   		
+	   		
+	   		
+	   		
 	   		if(nomFichier.exists())
 	   		{
+	   			
 	   			System.out.println("Le fichier existe deja .")
 	   			System.out.println("Voulez-vous le remplacer? O(oui) N(non)")
-	   			
+	   			char reponse = input.nextchar();
+	   			if(reponse == n || reponse == N)
+	   			{
+	   				System.out.println("Le fichier ne sera pas modifié / Refus")	
+	   			}
+	   			if(reponse == o || reponse == O)
+	   			{
+	   				System.out.println("Le fichier sera modifié / Fichier écrasé")
+	   				//Réécriture du fichier a faire
+	   			}
 	   		}
+	   		if(args[]<2)
+	   		{
+	   			System.out.println("Aucun Fichier créé / Aucun paramètres")	
+	   		}
+	   		if(args[]>3)
+	   		{
+	   			System.out.println("Aucun Fichier créé / Trop de paramètres")	
+	   		}
+	   		if(args[2] != "-n")
+	   		{
+	   			System.out.println("Aucun Fichier créé / Option invalide")		
+	   		}
+	   		
+	   		
 	   		
 	   			
 	   }
