@@ -18,7 +18,13 @@ public class Jedit
 	   						new FileWriter(nomFicher)));
 	   					
 	   		
-	   		
+	   		if(args[2] == "-n")
+	   		{
+	   			for(int i=1 ; i < nomFichier.length ; i++)
+	   			{
+	   				System.out.println(i+":"+//ligne de texte);
+	   			}
+	   		}
 	   		
 	   		
 	   		if(nomFichier.exists())
