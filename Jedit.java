@@ -5,7 +5,10 @@ public class Jedit
    public void editer( String args[] )
    {
       PrintWriter writer;
-	   String nomFichier
+	  String nomFichier
+	  BufferedReader Reader;
+	  boolean pasFini = true;
+	  String ligne;
 	   		
 	   		if(args[2] == "-n")
 	    	nomFichier = args[3]; // Nom du Ficher est contenu dans l'argument 3 exemple java Jedit -n exemple.txt
@@ -13,9 +16,32 @@ public class Jedit
 	   		nomFichier = args[2]; // Nom du Ficher est contenu dans l'argument 2 exemple java Jedit exemple.txt
 	   try
 	   {
+	   		reader = new BufferedReader(
+	   				     new FileReader(nomFichier));
+	   		
+	   		while(pasFini)	
+	   		{
+	   			ligne = reader.readLine();
+	   			if( ligne != null)
+	   			{
+	   				System.out.println(ligne)
+	   			}
+	   			else
+	   			{
+	   				pasFini = false;
+	   			}	
+	   		}
+	   		
+	   		
+	   		
 	   		writer = new PrintWriter(
 	   					new BufferedWriter(
-	   						new FileWriter(nomFicher)));
+	   						new FileWriter(nomFichier)));
+	   		for(int i= 0; i < proverbes.length; i++)
+	   		{
+	   			writer.println(nomFichier[i]) ;
+	   		}
+	   		writer.close();
 	   					
 	   		
 	   		if(args[2] == "-n")
@@ -56,11 +82,18 @@ public class Jedit
 	   			System.out.println("Aucun Fichier créé / Option invalide")		
 	   		}
 	   		
-	   		
-	   		
-	   			
-	   }
+   
+   	
+   		}
+   catch(IOException ioe)
+   {
+   		System.err.println(ioe);
+   		System.exit(1);
    }
+   	
+   			
+	 }
+ }
    
    public static void main( String args[] )
    {
