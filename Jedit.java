@@ -97,7 +97,9 @@ public class Jedit
    
    public static void main( String args[] )
    {
+
 	  Jedit app = new Jedit();
       app.editer( args );
+
    }
 }
