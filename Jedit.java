@@ -21,84 +21,68 @@ public class Jedit {
       }
       if (onContinue) // nous avons ici l'assurance que le nombre de parametre est valide et que l'option demande si tel est le cas est -n
       {
+         String nomFichier
+         File fichier;
          PrintWriter writer;
-         File nomFichier;
          BufferedReader Reader;
          boolean pasFini = true;
          String ligne;
 
          if (args.length == 2) //verification de ou est le nom de fichier
-            nomFichier = new File(args[1]); // Nom du Ficher est contenu dans l'argument 1 exemple java Jedit -n exemple.txt
+            nomFichier = args[1]; // Nom du Ficher est contenu dans l'argument 1 exemple java Jedit -n exemple.txt
          else
-            nomFichier = new File(args[0]); // Nom du Ficher est contenu dans l'argument 0 exemple java Jedit exemple.txt
-         try
+            nomFichier = args[0]; // Nom du Ficher est contenu dans l'argument 0 exemple java Jedit exemple.txt
+
+         fichier = new File(nomFichier)
+         if (fichier.exists())
          {
-
-            reader = new BufferedReader(
-               new FileReader(nomFichier));
-
-            while (pasFini)
+            System.out.println("Le fichier existe deja .");
+            System.out.println("Voulez-vous le remplacer? O(oui) N(non)");
+            BufferedReader br = new BufferedReader(new InputStreamReader(System.in)); // should be working now have to try
+            char reponse = (char)br.read();
+            if (reponse == 'n' || reponse == 'N')
             {
-               ligne = reader.readLine();
-               if (ligne.trim().length > 0)
-               {
-                  System.out.println(ligne);
-               }
-               else
-               {
-                  pasFini = false;
-               }
+               System.out.println("Le fichier ne sera pas modifié / Refus");
             }
-
-            writer = new PrintWriter(
-               new BufferedWriter(
-               new FileWriter(nomFichier)));
-
-            for(int i = 0; i < proverbes.length; i++)//what is this ?
+            if (reponse == 'o' || reponse == 'O')
             {
-               writer.println(nomFichier[i]);
-            }
-            writer.close();
+               System.out.println("Le fichier sera modifié / Fichier écrasé");
 
+               lireetecrire(args.length);
+            }
+         }
+         else
+         {
+            lireetecrire(args.length);
+         }
             // pas fou mais jaime pas i think i have a better idea TBV
-            if(args.length == 2)
-            {
-               for (int i = 1; i < nomFichier.length; i++)// TBV
-               {
-                  System.out.println(i + ":" );//ligne de texte);
-               }
-            }
-
-            // will prolly be ok ~> TEST NEEDED
-            if (nomFichier.exists())
-            {
-               System.out.println("Le fichier existe deja .");
-               System.out.println("Voulez-vous le remplacer? O(oui) N(non)");
-               BufferedReader br = new BufferedReader(new InputStreamReader(System.in)); // should be working now have to try
-               char reponse = (char)br.read();
-               if (reponse == 'n' || reponse == 'N')
-               {
-                  System.out.println("Le fichier ne sera pas modifié / Refus");
-               }
-               if (reponse == 'o' || reponse == 'O')
-               {
-                  System.out.println("Le fichier sera modifié / Fichier écrasé");
-                  //Réécriture du fichier a faire
-               }
-            }
-         }
-         catch (IOException ioe)
-         {
-            System.err.println(ioe);
-            System.exit(1);
-         }
+         //if (args.length == 2)
+         //{
+         //   for (int i = 1; i < nomFichier.length; i++)
+         //   {
+         //      System.out.println(i + ":");//ligne de texte);
+         //   }
+         //}
+      }
+         //catch (IOException ioe)
+         //{
+         //   System.err.println(ioe);
+         //   System.exit(1);
+         //}
       }
    }
+
+   private void lireetecrire(int nbarguments)
+   {
+
+
+
+   }
+
    public static void main( String args[] )
    {
       Jedit app = new Jedit();
       app.editer(args);
-
    }
 }
 
